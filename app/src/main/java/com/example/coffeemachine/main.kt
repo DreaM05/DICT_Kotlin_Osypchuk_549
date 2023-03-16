@@ -1,5 +1,6 @@
 package com.example.coffeemachine
 
+//start Coffee Machine
 fun main() {
 
     val scan = java.util.Scanner(System.`in`)
@@ -23,6 +24,7 @@ fun main() {
     }
 }
 
+//main class of operation of the coffee machine
 class CoffeeMachine {
 
     private var amountOfWater = 400
@@ -30,17 +32,20 @@ class CoffeeMachine {
     private var amountOfCoffeeBeans = 120
     private var amountOfCups = 9
     private var amountOfMoney = 550
+    private var status = true
 
     //menu
     fun start() {
 
         val scan = java.util.Scanner(System.`in`)
-        while (true) {
-            println("Write action (buy, fill, take):")
+        while (status) {
+            println("Write action (buy, fill, take, remaining, exit):")
             when (scan.next()) {
                 "buy" -> buyCoffee()
                 "fill" -> fillIngredients()
                 "take" -> takeMoney()
+                "remaining" -> getIngredients()
+                "exit" -> status = false
             }
         }
     }
@@ -58,8 +63,11 @@ class CoffeeMachine {
     //coffee shopping menu
     private fun buyCoffee() {
         val scan = java.util.Scanner(System.`in`)
-        println("\nWhat do you want to buy?\n--- 1 - Espresso\n--- 2 - Latte\n--- 3 - Cappuccino")
+        println("What do you want to buy?\n--- 1 - Espresso\n--- 2 - Latte\n--- 3 - Cappuccino\n--- 0 - Back to menu")
         val num = scan.nextInt()
+        if (num == 0) {
+            start()
+        }
         if (num == 1) {
             espresso()
         }
